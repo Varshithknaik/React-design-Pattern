@@ -37,9 +37,11 @@ const includeUpdatableUser = ({
     };
 
     const onPostUser = async () => {
+      console.log("response.data");
       const response = await axios.post(`api/users/${userId}`, { user });
       setUser(response.data);
       setInitialUser(response.data);
+      console.log("re", response);
     };
 
     const onResetUser = () => {

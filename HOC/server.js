@@ -72,10 +72,8 @@ app.get("/users", (req, res) => res.json(users));
 app.post("/users/:id", (req, res) => {
   const { id } = req.params;
   const { user: editedUser } = req.body;
-
-  users = users.map((user) => (user.id === id ? editedUser : user));
-
-  res.json(users.find((user) => user.id === id));
+  users = users.map((user) => (user.id == id ? editedUser : user));
+  res.json(users.find((user) => user.id == id));
 });
 
 app.get("/books", (req, res) => res.json(books));
