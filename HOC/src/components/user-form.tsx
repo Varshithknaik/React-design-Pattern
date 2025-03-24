@@ -1,5 +1,6 @@
 import { UserProps } from "./user-info";
 import includeUpdatableUser from "./include-updatable-user";
+import includeUpdatableResource from "./include-editable-resource";
 
 interface UserFormProps {
   user: UserProps;
@@ -43,7 +44,13 @@ const UserForm = ({
   );
 };
 
-export const UserInfoForm = includeUpdatableUser({
+// export const UserInfoForm = includeUpdatableUser({
+//   Component: UserForm,
+//   userId: "3",
+// });
+
+export const UserInfoForm = includeUpdatableResource({
   Component: UserForm,
-  userId: "3",
+  resourceName: "user",
+  resourceUrl: "/api/users/3",
 });
