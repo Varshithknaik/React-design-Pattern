@@ -1,6 +1,5 @@
 import { UserProps } from "./user-info";
 import includeUpdatableUser from "./include-updatable-user";
-import includeUpdatableResource from "./include-editable-resource";
 
 interface UserFormProps {
   user: UserProps;
@@ -35,7 +34,7 @@ const UserForm = ({
           onChange={(e) => onChangeUser({ age: Number(e.target.value) })}
         />
       </label>
-      <button onClick={onPostUser}>Post</button>
+      <button onClick={onPostUser}>Posts</button>
       <button onClick={onResetUser}>Reset</button>
       <pre>{JSON.stringify(user, null, 2)}</pre>
     </>
@@ -44,13 +43,13 @@ const UserForm = ({
   );
 };
 
-// export const UserInfoForm = includeUpdatableUser({
-//   Component: UserForm,
-//   userId: "3",
-// });
-
-export const UserInfoForm = includeUpdatableResource({
+export const UserInfoForm = includeUpdatableUser({
   Component: UserForm,
-  resourceName: "user",
-  resourceUrl: "/api/users/3",
+  userId: "3",
 });
+
+// export const UserInfoForm = includeUpdatableResource({
+//   Component: UserForm,
+//   resourceName: "user",
+//   resourceUrl: "/api/users/3",
+// });
