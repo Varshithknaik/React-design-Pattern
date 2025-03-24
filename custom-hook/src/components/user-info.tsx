@@ -1,4 +1,5 @@
-import useCurrentUser from "./current-user.hook";
+// import useCurrentUser from "./current-user.hook";
+import useUser from "./user.hook";
 
 export interface UserProps {
   // A more descriptive name for the interface
@@ -7,13 +8,12 @@ export interface UserProps {
   country: string;
   books: string[];
 }
-export interface IProps {
-  user?: UserProps | null;
-}
 
-export const UserInfo = ({ user }: IProps) => {
-  const { name, age, country, books } = useCurrentUser() || {};
-
+export const UserInfo = ({ userId }: { userId: number }) => {
+  // const { name, age, country, books } = useCurrentUser() || {};
+  const user = useUser({ userId });
+  const { name, age, country, books } = user || {};
+  console.log(name, age);
   return user ? (
     <>
       <h2>{name}</h2>
