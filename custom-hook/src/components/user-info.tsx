@@ -1,3 +1,5 @@
+import useCurrentUser from "./current-user.hook";
+
 export interface UserProps {
   // A more descriptive name for the interface
   name: string;
@@ -10,7 +12,7 @@ export interface IProps {
 }
 
 export const UserInfo = ({ user }: IProps) => {
-  const { name, age, country, books } = user || {};
+  const { name, age, country, books } = useCurrentUser() || {};
 
   return user ? (
     <>
@@ -18,7 +20,11 @@ export const UserInfo = ({ user }: IProps) => {
       <p>Age: {age} years</p>
       <p>Country: {country}</p>
       <h2>Books</h2>
-      <ul>{books?.map((book) => <li key={book}> {book}</li>)}</ul>
+      <ul>
+        {books?.map((book) => (
+          <li key={book}> {book}</li>
+        ))}
+      </ul>
     </>
   ) : (
     <h1> Loading...</h1>
