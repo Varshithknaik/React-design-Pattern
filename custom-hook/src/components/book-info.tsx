@@ -1,8 +1,15 @@
+import useResource from "./resource.hook";
+
 export interface BookProps {
-  book?: { name: string; price: string; title: string; pages: string };
+  name: string;
+  price: string;
+  title: string;
+  pages: string;
 }
 
-export const BookInfo = ({ book }: BookProps) => {
+export const BookInfo = ({ bookId }: { bookId: number }) => {
+  // const { name, price, title, pages } = book || {};
+  const book = useResource<BookProps>({ resourceUrl: `/api/books/${bookId}` });
   const { name, price, title, pages } = book || {};
   console.log(book);
   return book ? (
