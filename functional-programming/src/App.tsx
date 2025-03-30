@@ -1,5 +1,6 @@
 import "./App.css";
-import { GreenSmallButton, RedButton } from "./components/composition";
+import { GreenSmallButton } from "./components/composition";
+import { RedButton } from "./components/partial";
 import RecursiveComponent from "./components/recursive";
 
 const myNestedObject = {
