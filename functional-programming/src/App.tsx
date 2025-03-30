@@ -1,8 +1,11 @@
 import "./App.css";
 import { GreenSmallButton } from "./components/composition";
 import { Card } from "./components/compound-component";
+import ParentComponent from "./components/observer-pattern";
 import { RedButton } from "./components/partial";
 import RecursiveComponent from "./components/recursive";
+
+import mitt from "mitt";
 
 const myNestedObject = {
   key1: "value1",
@@ -15,6 +18,9 @@ const myNestedObject = {
   },
   key3: "value3",
 };
+
+export const emitter = mitt();
+
 function App() {
   return (
     <>
@@ -41,6 +47,8 @@ function App() {
           <button>Cancel</button>
         </Card.Footer>
       </Card>
+
+      <ParentComponent />
     </>
   );
 }
