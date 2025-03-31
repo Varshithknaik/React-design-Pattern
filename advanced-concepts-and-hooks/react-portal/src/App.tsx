@@ -7,7 +7,10 @@ function App() {
   const [show, setShow] = useState<boolean>(true);
 
   return (
-    <div style={{ marginTop: "100px" }}>
+    <div
+      onClick={() => console.log("outer-div")}
+      style={{ marginTop: "100px" }}
+    >
       <h1>Other Content</h1>
       <button onClick={() => setShow(true)}>Show Message</button>
       <Alert show={show} onClose={() => setShow(false)}>
@@ -34,7 +37,7 @@ const Alert = ({
     <div className="alert" onClick={onClose}>
       {children}
     </div>,
-    document.body
+    document.getElementById("alert-holder")!
   );
 };
 
