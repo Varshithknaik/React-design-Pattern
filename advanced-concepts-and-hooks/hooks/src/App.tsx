@@ -1,11 +1,14 @@
-import UseDeferredValueComp from "./components/use-deferred-value";
+// import UseDeferredValueComp from "./components/use-deferred-value";
+import UseTransitionComp from "./components/use-transition";
 
 function App() {
   return (
     <>
       {/* <CallbackAsRef /> */}
 
-      <UseDeferredValueComp />
+      {/* <UseDeferredValueComp /> */}
+
+      <UseTransitionComp />
     </>
   );
 }
