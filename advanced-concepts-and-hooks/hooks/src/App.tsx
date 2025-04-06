@@ -1,9 +1,11 @@
-import CallbackAsRef from "./components/callback-as-ref";
+import UseDeferredValueComp from "./components/use-deferred-value";
 
 function App() {
   return (
     <>
-      <CallbackAsRef />
+      {/* <CallbackAsRef /> */}
+
+      <UseDeferredValueComp />
     </>
   );
 }
