@@ -1,5 +1,5 @@
 import { useDeferredValue, useState } from "react";
-import HeavyComponent from "./HeavyComponent";
+import HeavyComponent from "./comps/HeavyComponent";
 
 const UseDeferredValueComp = () => {
   const [keyWord, setKeyWord] = useState<string>("");
