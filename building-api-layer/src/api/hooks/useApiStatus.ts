@@ -4,12 +4,16 @@ import { apiStatus, defaultApiStatus } from "../../constants/api.status";
 const capitalize = (s: string) =>
   s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 
+type CapitalizeString<S extends string> =
+  S extends `${infer First}${infer Rest}`
+    ? `${Uppercase<First>}${Lowercase<Rest>}`
+    : S;
+
 export type ApiStatusValue = (typeof apiStatus)[keyof typeof apiStatus];
 
 export type StatusFlags = {
-  [K in ApiStatusValue as `is${Capitalize<K>}`]: boolean;
+  [K in ApiStatusValue as `is${CapitalizeString<K>}`]: boolean;
 };
-
 const prepareStatus = (currentStatus: string) => {
   const statuses: StatusFlags = {} as StatusFlags;
   for (const status of defaultApiStatus) {

@@ -1,13 +1,13 @@
-export const IDLE = "Idle";
-export const PENDING = "Pending";
-export const SUCCESS = "Success";
-export const ERROR = "Error";
+export const IDLE = "IDLE";
+export const PENDING = "PENDING";
+export const SUCCESS = "SUCCESS";
+export const ERROR = "ERROR";
 
-export const defaultApiStatus = ["Idle", "Pending", "Success", "Error"];
+export const defaultApiStatus = ["IDLE", "PENDING", "SUCCESS", "ERROR"];
 
 export const apiStatus = {
-  IDLE: "Idle",
-  PENDING: "Pending",
-  SUCCESS: "Success",
-  ERROR: "Error",
+  IDLE: "IDLE",
+  PENDING: "PENDING",
+  SUCCESS: "SUCCESS",
+  ERROR: "ERROR",
 } as const;
