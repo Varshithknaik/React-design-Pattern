@@ -3,20 +3,23 @@ import { fetchUsers } from "../api/usersApi";
 import styled from "styled-components";
 import React from "react";
 import { withAsync } from "../helper/with-async";
+import { apiStatus } from "../constants/api.status";
 
 const useFetchUsers = () => {
   const [users, setUsers] = useState<{ name: string; email: string }[]>([]);
 
-  const [fetchUserStatus, setFetchUserStatus] = useState<string>("IDLE");
+  const [fetchUserStatus, setFetchUserStatus] = useState<string>(
+    apiStatus.IDLE
+  );
   const initFetchUsers = async () => {
-    setFetchUserStatus("PENDING");
+    setFetchUserStatus(apiStatus.PENDING);
 
     const { response, error } = await withAsync(() => fetchUsers());
 
     if (error) {
-      setFetchUserStatus("ERROR");
+      setFetchUserStatus(apiStatus.ERROR);
     } else if (response) {
-      setFetchUserStatus("SUCCESS");
+      setFetchUserStatus(apiStatus.SUCCESS);
       setUsers(response.data);
     }
   };
@@ -66,7 +69,7 @@ const Users = () => {
   return (
     <Container>
       <FetchButton onClick={initFetchUsers}>
-        {fetchUserStatus === "PENDING" ? "Loading..." : "Fetch Users"}
+        {fetchUserStatus === apiStatus.PENDING ? "Loading..." : "Fetch Users"}
       </FetchButton>
       <FlexContainer>
         <ContentContainer>
