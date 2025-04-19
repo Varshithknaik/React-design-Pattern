@@ -2,17 +2,26 @@ import { useEffect, useState } from "react";
 import { fetchUsers } from "../api/usersApi";
 import styled from "styled-components";
 import React from "react";
+import { withAsync } from "../helper/with-async";
 
 const useFetchUsers = () => {
   const [users, setUsers] = useState<{ name: string; email: string }[]>([]);
 
+  const [fetchUserStatus, setFetchUserStatus] = useState<string>("IDLE");
   const initFetchUsers = async () => {
-    const response = await fetchUsers();
+    setFetchUserStatus("PENDING");
 
-    setUsers(response.data);
+    const { response, error } = await withAsync(() => fetchUsers());
+
+    if (error) {
+      setFetchUserStatus("ERROR");
+    } else if (response) {
+      setFetchUserStatus("SUCCESS");
+      setUsers(response.data);
+    }
   };
 
-  return { users, initFetchUsers };
+  return { users, initFetchUsers, fetchUserStatus };
 };
 
 const Container = styled.div`
@@ -48,15 +57,17 @@ const FetchButton = styled.button`
 `;
 
 const Users = () => {
-  const { users, initFetchUsers } = useFetchUsers();
+  const { users, initFetchUsers, fetchUserStatus } = useFetchUsers();
 
   useEffect(() => {
     initFetchUsers();
-  }, []);
+  }, [initFetchUsers]);
 
   return (
     <Container>
-      <FetchButton onClick={initFetchUsers}>Fetch Users</FetchButton>
+      <FetchButton onClick={initFetchUsers}>
+        {fetchUserStatus === "PENDING" ? "Loading..." : "Fetch Users"}
+      </FetchButton>
       <FlexContainer>
         <ContentContainer>
           {users
