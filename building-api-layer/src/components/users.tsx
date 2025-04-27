@@ -15,7 +15,8 @@ const useFetchUsers = () => {
     isError: isFetchUsersStatusError,
     isPending: isFetchUsersStatusPending,
     isSuccess: isFetchUsersStatusSuccess,
-  } = useApi({ fn: () => fetchUsers().then((res) => res.data) });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } = useApi({ fn: () => fetchUsers().then((res: { data: any }) => res.data) });
 
   return {
     users,
