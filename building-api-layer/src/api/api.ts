@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { AxiosInstance } from "axios";
-import type { CreateAxiosDefaults, AxiosRequestConfig } from "axios";
+import type {
+  CreateAxiosDefaults,
+  AxiosRequestConfig,
+  AxiosResponse,
+} from "axios";
 
 const axiosParams: CreateAxiosDefaults = {
   baseURL:
@@ -26,7 +30,7 @@ interface CustomAxiosRequestConfig extends AxiosRequestConfig {
 
 export const isApiError = (error: unknown) => axios.isAxiosError(error);
 
-const withAbort = (fn: (...args: any[]) => any): any => {
+const withAbort = (fn: (...args: any[]) => any) => {
   const executor = async (...args: any[]) => {
     const originalConfig = args[args.length - 1] as
       | CustomAxiosRequestConfig
@@ -58,11 +62,30 @@ const withAbort = (fn: (...args: any[]) => any): any => {
   return executor;
 };
 
+const withLogging = async (promise: Promise<AxiosResponse<any, any>>) => {
+  promise.catch((error) => {
+    if (process.env.REACT_API_DEBUG_API) throw error;
+
+    if (error.response) {
+      console.log(error.response.data);
+      console.log(error.response.status);
+      console.log(error.response.headers);
+    } else if (error.request) {
+      console.log(error.request);
+    } else {
+      console.log("Error", error.message);
+    }
+
+    console.log(error.config);
+    throw error;
+  });
+};
+
 const api = (axios: AxiosInstance) => {
   return {
-    get: (url: string, config = {}) => axios.get(url, config),
+    get: (url: string, config = {}) => withLogging(axios.get(url, config)),
     post: (url: string, data = {}, config = {}) =>
-      withAbort(axios.post)(url, data, config),
+      withLogging(withAbort(axios.post)(url, data, config)),
     delete: (url: string, config = {}) => withAbort(axios.delete)(url, config),
     patch: (url: string, data = {}, config = {}) =>
       withAbort(axios.patch)(url, data, config),
