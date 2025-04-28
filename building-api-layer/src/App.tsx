@@ -1,13 +1,21 @@
+import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
-import SearchMeal from "./components/search-meals";
+import TopQuotes from "./components/top-quotes";
+// import SearchMeal from "./components/search-meals";
 // import Users from "./components/users";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
     <>
       {/* <Users /> */}
 
-      <SearchMeal />
+      {/* <SearchMeal /> */}
+
+      <QueryClientProvider client={queryClient}>
+        <TopQuotes />
+      </QueryClientProvider>
     </>
   );
 }

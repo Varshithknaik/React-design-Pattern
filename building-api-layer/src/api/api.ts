@@ -8,7 +8,7 @@ import type {
 
 const axiosParams: CreateAxiosDefaults = {
   baseURL:
-    process.env.NODE_ENV === "development" ? "http://localhost:8080" : "/",
+    process.env.NODE_ENV === "development" ? "http://localhost:9000" : "/",
 };
 
 const axiosInstance = axios.create(axiosParams as CreateAxiosDefaults);
