@@ -63,7 +63,7 @@ const withAbort = (fn: (...args: any[]) => any) => {
 };
 
 const withLogging = async (promise: Promise<AxiosResponse<any, any>>) => {
-  promise.catch((error) => {
+  return promise.catch((error) => {
     if (process.env.REACT_API_DEBUG_API) throw error;
 
     if (error.response) {
