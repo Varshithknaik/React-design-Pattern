@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import "./App.css";
 import TopQuotes from "./components/top-quotes";
+import UpdateQuotes from "./components/update-quotes";
+import { ToastContainer } from "react-toastify";
 // import SearchMeal from "./components/search-meals";
 // import Users from "./components/users";
 
@@ -14,7 +16,9 @@ function App() {
       {/* <SearchMeal /> */}
 
       <QueryClientProvider client={queryClient}>
+        <ToastContainer />
         <TopQuotes />
+        <UpdateQuotes />
       </QueryClientProvider>
     </>
   );

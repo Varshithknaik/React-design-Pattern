@@ -58,6 +58,7 @@ app.get("/top_quotes", async (request, response) => {
 });
 
 app.get("/", async (request, response) => {
+  console.log("caleds");
   try {
     const { page, cursor } = request.query;
     if (!page && !cursor) {
@@ -84,6 +85,7 @@ app.get("/", async (request, response) => {
 app.post("/", async (request, response) => {
   try {
     const { quote, author } = request.body;
+    console.log(quote, author);
     if (!quote || !author) {
       response.status(400).send("Please provide author and quote text.");
       return;
