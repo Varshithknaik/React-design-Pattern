@@ -4,7 +4,8 @@ import "./App.css";
 // import UpdateQuotes from "./components/update-quotes";
 import { ToastContainer } from "react-toastify";
 // import PaginatedQuotes from "./components/paginated-quotes";
-import InifinityScrollQuotes from "./components/inifinity-scroll-quotes";
+// import InifinityScrollQuotes from "./components/inifinity-scroll-quotes";
+import QueryCancelationWithAbortSignal from "./components/query-cancellation";
 // import SearchMeal from "./components/search-meals";
 // import Users from "./components/users";
 
@@ -22,7 +23,8 @@ function App() {
         {/* <TopQuotes />
         <UpdateQuotes /> */}
         {/* <PaginatedQuotes /> */}
-        <InifinityScrollQuotes />
+        {/* <InifinityScrollQuotes /> */}
+        <QueryCancelationWithAbortSignal />
       </QueryClientProvider>
     </>
   );

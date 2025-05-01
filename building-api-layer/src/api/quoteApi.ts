@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { AxiosRequestConfig } from "axios";
 import api from "./api";
 
-export const fetchTopQuotes = () => {
-  return api.get("top_quotes").then((res) => res.data.quotes);
+export const fetchTopQuotes = (config: AxiosRequestConfig) => {
+  return api.get("top_quotes", config).then((res) => res.data.quotes);
 };
 
 export const postQuotes = (quote: any) => api.post("", quote);
