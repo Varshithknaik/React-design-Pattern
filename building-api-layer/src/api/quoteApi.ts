@@ -11,3 +11,6 @@ export const resetQuotes = () => api.post("reset", {});
 
 export const fetchQuotesByPage = (page: number) =>
   api.get("", { params: { page } }).then((res) => res.data);
+
+export const fetchQuotesByCursor = (cursor: string) =>
+  api.get("", { params: { cursor } }).then((res) => res.data);
