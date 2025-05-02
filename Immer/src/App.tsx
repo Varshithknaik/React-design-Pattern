@@ -1,20 +1,22 @@
-import "./App.css";
-import TasksBoard from "./components/tasks-board";
+import styled from "styled-components";
+import ShoppingList from "./components/shopping-list";
+
+const StyledApp = styled.div`
+  margin: 0 auto;
+  max-width: 6xl;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-left: 25px;
+  padding-right: 25px;
+`;
 
 function App() {
-  // const [person, setPerson] = useState({ name: "Superman", age: 0 });
-
-  // const onChange = () => {
-  //   // This wont work
-  //   person.age = 24;
-
-  //   // This will work
-  //   setPerson((person) => ({ ...person, age: 24 }));
-  //   console.log(person);
-  // };
   return (
     <>
-      <TasksBoard />
+      <StyledApp>
+        <ShoppingList />
+      </StyledApp>
     </>
   );
 }
