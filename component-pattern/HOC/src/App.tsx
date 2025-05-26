@@ -1,13 +1,20 @@
 import "./App.css";
-import DisplayMousePosition from "./components/render-props/display-mouse";
-import { RenderMousePosition } from "./components/render-props/render-mouse";
+import useMousePosition from "./components/hooks/useMousePosition";
 
 function App() {
+  const { x, y, onMouseMove } = useMousePosition();
   return (
     <div className="container">
-      <RenderMousePosition>
-        {({ x, y }) => <DisplayMousePosition x={x} y={y} />}
-      </RenderMousePosition>
+      <div className="relative-container" onMouseMove={onMouseMove}>
+        <section className="absolute-section">
+          <p>
+            <span className="bold-span">X</span>: {x}
+          </p>
+          <p>
+            <span className="bold-span">Y</span>: {y}
+          </p>
+        </section>
+      </div>
     </div>
   );
 }
